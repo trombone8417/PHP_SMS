@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a17d70394ae5f08c96674b0d0079b993",
+    "content-hash": "b0738640dc86af11efe76d0dd272abc3",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -681,21 +681,21 @@
         },
         {
             "name": "infyomlabs/adminlte-templates",
-            "version": "v2.0.0",
+            "version": "6.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/adminlte-templates.git",
-                "reference": "643d3c020a1765a214d18032eaf54b01b3114ac3"
+                "reference": "fb28d26cd0f891c80ee800cffb6c21366eab3552"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/adminlte-templates/zipball/643d3c020a1765a214d18032eaf54b01b3114ac3",
-                "reference": "643d3c020a1765a214d18032eaf54b01b3114ac3",
+                "url": "https://api.github.com/repos/InfyOmLabs/adminlte-templates/zipball/fb28d26cd0f891c80ee800cffb6c21366eab3552",
+                "reference": "fb28d26cd0f891c80ee800cffb6c21366eab3552",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "php": ">=7.2.5|^8.0"
+                "illuminate/support": "^6.0.0",
+                "php": ">=7.2"
             },
             "type": "library",
             "extra": {
@@ -732,10 +732,10 @@
             "funding": [
                 {
                     "url": "https://opencollective.com/infyomlabs",
-                    "type": "opencollective"
+                    "type": "open_collective"
                 }
             ],
-            "time": "2021-01-02T06:35:54+00:00"
+            "time": "2020-12-18T11:50:58+00:00"
         },
         {
             "name": "infyomlabs/laravel-generator",
@@ -6468,6 +6468,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "infyomlabs/adminlte-templates": 20,
         "infyomlabs/laravel-generator": 20
     },
     "prefer-stable": true,
