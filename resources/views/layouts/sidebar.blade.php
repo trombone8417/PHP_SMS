@@ -6,7 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3">
             <div class="pull-left image">
-                <img src="./img/me.jpg" class="img-circle"
+                <img src="http://127.0.0.1:8000/img/me.jpg" class="img-circle"
                      alt="User Image"/>
             </div>
             <div class="pull-left info">
