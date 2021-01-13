@@ -93,7 +93,7 @@ class TransactionController extends AppBaseController
     public function edit($id)
     {
         $transaction = $this->transactionRepository->find($id);
-
+        
         if (empty($transaction)) {
             Flash::error('Transaction not found');
 

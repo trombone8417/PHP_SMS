@@ -3,11 +3,11 @@
         <thead>
             <tr>
                 <th>Name</th>
-        <th>Role</th>
-        <th>Email</th>
-        <th>Email Verified At</th>
-        <th>Password</th>
-        <th>Remember Token</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Email Verified At</th>
+                <th>Password</th>
+                <th>Remember Token</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

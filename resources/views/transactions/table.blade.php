@@ -16,12 +16,12 @@
         @foreach($transactions as $transaction)
             <tr>
                 <td>{{ $transaction->student_id }}</td>
-            <td>{{ $transaction->fee_id }}</td>
-            <td>{{ $transaction->user_id }}</td>
-            <td>{{ $transaction->paid }}</td>
-            <td>{{ $transaction->transaction_date }}</td>
-            <td>{{ $transaction->remark }}</td>
-            <td>{{ $transaction->description }}</td>
+                <td>{{ $transaction->fee_id }}</td>
+                <td>{{ $transaction->user_id }}</td>
+                <td>{{ $transaction->paid }}</td>
+                <td>{{ $transaction->transaction_date }}</td>
+                <td>{{ $transaction->remark }}</td>
+                <td>{{ $transaction->description }}</td>
                 <td>
                     {!! Form::open(['route' => ['transactions.destroy', $transaction->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

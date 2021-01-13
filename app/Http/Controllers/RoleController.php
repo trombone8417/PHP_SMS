@@ -8,6 +8,7 @@ use App\Repositories\RoleRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Laracasts\Flash\Flash as FlashFlash;
 use Response;
 
 class RoleController extends AppBaseController
@@ -75,6 +76,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
+            
             Flash::error('Role not found');
 
             return redirect(route('roles.index'));
