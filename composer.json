@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.4",
         "infyomlabs/adminlte-templates": "6.0.x-dev",
         "infyomlabs/laravel-generator": "6.0.x-dev",
+        
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.0"

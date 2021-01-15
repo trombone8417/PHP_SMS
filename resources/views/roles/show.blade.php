@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Role
+            <i class="fa fa-registered">&nbsp;Role</i>
         </h1>
     </section>
     <div class="content">

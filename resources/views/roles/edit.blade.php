@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Role
+           <i class="fa fa-registered">&nbsp;Role</i>
         </h1>
    </section>
    <div class="content">
@@ -13,7 +13,14 @@
                <div class="row">
                    {!! Form::model($role, ['route' => ['roles.update', $role->role_id], 'method' => 'patch']) !!}
 
-                        @include('roles.fields')
+                   <div class="form-group col-md-6">
+                    {!! Form::label('name', 'Name:') !!}
+                    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+                </div> </div>
+               <div>
+                    {!! Form::submit('Update Role', ['class' => 'btn btn-info']) !!}
+                </div>
+
 
                    {!! Form::close() !!}
                </div>
