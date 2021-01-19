@@ -17,8 +17,9 @@ class BatchRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'batch'
+        'year'
     ];
+    protected $primaryKey = 'batch_id';
 
     /**
      * Return searchable fields
