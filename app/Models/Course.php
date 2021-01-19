@@ -20,12 +20,13 @@ class Course extends Model
     use SoftDeletes;
 
     public $table = 'courses';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
+    protected $primaryKey = 'course_id';
 
 
 
@@ -64,5 +65,5 @@ class Course extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }
