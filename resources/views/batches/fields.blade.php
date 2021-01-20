@@ -1,4 +1,4 @@
-{{-- modal 彈出視窗 header(前) --}}
+{{-- modal 彈出視窗 header(頭) --}}
 <div class="modal fade" id="batch-add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -18,7 +18,7 @@
                     !!}
                 </div>
 
-                {{-- modal 彈出視窗 footer(前) --}}
+                {{-- modal 彈出視窗 footer(頭) --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>

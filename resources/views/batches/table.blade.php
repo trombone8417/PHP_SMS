@@ -13,9 +13,12 @@
                     <td>
                         {!! Form::open(['route' => ['batches.destroy', $batch->batch_id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
-                            <a data-toggle="modal" data-target="#batch-view-modal"
-                                data-batch_id="{{ $batch->batch_id }}" data-year="{{ $batch->year }}"
-                                data-created_at="{{ $batch->created_at }}" data-updated_at="{{ $batch->updated_at }}"
+                            <a data-toggle="modal"
+                                data-target="#batch-view-modal"
+                                data-batch_id="{{ $batch->batch_id }}"
+                                data-year="{{ $batch->year }}"
+                                data-created_at="{{ $batch->created_at }}"
+                                data-updated_at="{{ $batch->updated_at }}"
                                 class='btn btn-warning btn-xs'><i class="glyphicon glyphicon-eye-open"></i>&nbsp;檢視</a>
                             <a href="{{ route('batches.edit', [$batch->batch_id]) }}" class='btn btn-info btn-xs'><i
                                     class="glyphicon glyphicon-edit"></i>&nbsp;編輯</a>
@@ -46,7 +49,7 @@
                 <input type="hidden" name="batch_id" id="batch_id">
                 <div class="form-group">
                     {!! Form::label('year', 'Batch year:') !!}
-                    <input type="text" name="year" id="year_bs" disabled="disabled">
+                    <input type="text" name="year" id="year" disabled="disabled">
                 </div>
                 <div class="form-group">
                     {!! Form::label('created_at', 'Created At:') !!}
@@ -80,7 +83,7 @@
             var modal = $(this)
 
             modal.find('.modal-title').text('VIEW BATCH INFORMATION');
-            modal.find('.modal-body #year_bs').val(year);
+            modal.find('.modal-body #year').val(year);
             modal.find('.modal-body #created_at').val(created_at);
             modal.find('.modal-body #updated_at').val(updated_at);
             modal.find('.modal-body #batch_id').val(batch_id);
