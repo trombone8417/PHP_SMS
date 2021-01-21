@@ -17,14 +17,14 @@ class Day extends Model
     use SoftDeletes;
 
     public $table = 'days';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
 
-
+    protected $primaryKey = 'day_id';
 
     public $fillable = [
         'name'
@@ -52,5 +52,5 @@ class Day extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

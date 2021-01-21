@@ -19,7 +19,7 @@ class DayRepository extends BaseRepository
     protected $fieldSearchable = [
         'name'
     ];
-
+    protected $primaryKey = 'day_id';
     /**
      * Return searchable fields
      *
