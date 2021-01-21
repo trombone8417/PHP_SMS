@@ -13,8 +13,11 @@
                 <td>
                     {!! Form::open(['route' => ['days.destroy', $day->day_id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a data-toggle="modal" data-target="#day-view-modal" data-name="{{ $day->name }}"
-                            data-created_at="{{ $day->created_at }}" data-updated_at="{{ $day->updated_at }}"
+                        <a data-toggle="modal"
+                            data-target="#day-view-modal"
+                            data-name="{{ $day->name }}"
+                            data-created_at="{{ $day->created_at }}"
+                            data-updated_at="{{ $day->updated_at }}"
                             class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                         <a href="{{ route('days.edit', [$day->day_id]) }}" class='btn btn-default btn-xs'><i
                                 class="glyphicon glyphicon-edit"></i></a>

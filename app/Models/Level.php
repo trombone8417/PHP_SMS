@@ -19,14 +19,14 @@ class Level extends Model
     use SoftDeletes;
 
     public $table = 'levels';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
 
-
+    protected $primaryKey = 'level_id';
 
     public $fillable = [
         'level',
@@ -60,5 +60,5 @@ class Level extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

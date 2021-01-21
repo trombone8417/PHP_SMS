@@ -5,7 +5,9 @@
         <h1 class="pull-left"><i class="fa fa-sun-o" aria-hidden="true"></i> Days</h1>
         <h1 class="pull-right">
            <a data-toggle="modal"
-           data-target="#day-add-modal" class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px">Add Day</a>
+           data-target="#day-add-modal"
+           class="btn btn-success pull-right"
+           style="margin-top: -10px;margin-bottom: 5px">Add Day</a>
         </h1>
     </section>
     <div class="content">
