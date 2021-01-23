@@ -19,7 +19,7 @@ class AcademicRepository extends BaseRepository
     protected $fieldSearchable = [
         'academic_year'
     ];
-
+    protected $primaryKey = 'academic_id';
     /**
      * Return searchable fields
      *

@@ -24,7 +24,7 @@ class Academic extends Model
 
     protected $dates = ['deleted_at'];
 
-
+    protected $primaryKey = 'academic_id';
 
     public $fillable = [
         'academic_year'
