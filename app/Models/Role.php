@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+//use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Role
@@ -54,5 +55,9 @@ class Role extends Model
         'updated_at' => 'nullable'
     ];
 
+    public function user()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 
 }
