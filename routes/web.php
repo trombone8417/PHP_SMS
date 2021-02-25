@@ -60,3 +60,5 @@ Route::resource('users', 'UserController');
 
 
 Route::resource('semesters', 'SemesterController');
+
+Route::resource('classSchedules', 'ClassScheduleController');

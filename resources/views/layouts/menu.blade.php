@@ -71,9 +71,8 @@
                         Assignings</span></a>
             </li>
 
-            <li class="{{ Request::is('classSchedulings*') ? 'active' : '' }}">
-                <a href="{{ route('classSchedulings.index') }}"><i class="fa fa-edit"></i><span>Class
-                        Schedulings</span></a>
+            <li class="{{ Request::is('classSchedules*') ? 'active' : '' }}">
+                <a href="{{ route('classSchedules.index') }}"><i class="fa fa-edit"></i><span>Class Schedules</span></a>
             </li>
         </ul>
     </li>
@@ -104,3 +103,5 @@
         <a href="{{ route('transactions.index') }}"><i class="fa fa-money"></i><span>Transactions</span></a>
     </li>
 {{-- @endif --}}
+
+
