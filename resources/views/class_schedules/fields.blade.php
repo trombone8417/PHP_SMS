@@ -1,99 +1,151 @@
-<!-- Course Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('course_id', 'Course Id:') !!}
-    {!! Form::number('course_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Class Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('class_id', 'Class Id:') !!}
-    {!! Form::number('class_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Level Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('level_id', 'Level Id:') !!}
-    {!! Form::number('level_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Shift Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('shift_id', 'Shift Id:') !!}
-    {!! Form::number('shift_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Classroom Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('classroom_id', 'Classroom Id:') !!}
-    {!! Form::number('classroom_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Batch Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('batch_id', 'Batch Id:') !!}
-    {!! Form::number('batch_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Day Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('day_id', 'Day Id:') !!}
-    {!! Form::number('day_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Time Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('time_id', 'Time Id:') !!}
-    {!! Form::number('time_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Semester Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('semester_id', 'Semester Id:') !!}
-    {!! Form::number('semester_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Start Date Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('start_date', 'Start Date:') !!}
-    {!! Form::date('start_date', null, ['class' => 'form-control','id'=>'start_date']) !!}
-</div>
-
-@push('scripts')
-    <script type="text/javascript">
-        $('#start_date').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endpush
-
-<!-- End Date Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('end_date', 'End Date:') !!}
-    {!! Form::date('end_date', null, ['class' => 'form-control','id'=>'end_date']) !!}
-</div>
-
-@push('scripts')
-    <script type="text/javascript">
-        $('#end_date').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endpush
-
-<!-- Status Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('status', 'Status:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('status', 0) !!}
-        {!! Form::checkbox('status', '1', null) !!}
-    </label>
-</div>
+<!-- Modal -->
+<div class="modal fade" id="class_schedules-add-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
 
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('classSchedules.index') }}" class="btn btn-default">Cancel</a>
+                <!-- Start Date Field -->
+                <div class="form-group col-sm-6">
+                    <label>Start Date</label>
+                    <input type="text" name="start_date" id="start_date" class="form-control" autocomplete="off" placeholder="請按這裡">
+                </div>
+
+                @push('scripts')
+                <script type="text/javascript">
+                    $('#start_date').datetimepicker({
+                        format: 'YYYY-MM-DD',
+                        useCurrent: false
+                    })
+                </script>
+                @endpush
+                <!-- End Date Field -->
+                <div class="form-group col-sm-6">
+                    <label>End Date</label>
+                    <input type="text" name="end_date" id="end_date" class="form-control" autocomplete="off" placeholder="請按這裡">
+                </div>
+
+                @push('scripts')
+                <script type="text/javascript">
+                    $('#end_date').datetimepicker({
+                        format: 'YYYY-MM-DD',
+                        useCurrent: false
+                    })
+                </script>
+                @endpush
+                <!-- Course Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="course_id" id="course_id" class="form-control">
+                        <option value="">Select Course</option>
+                        @foreach ($course as $cour)
+                        <option value="{{$cour->course_id}}">{{$cour->course_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Class Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="class_id" id="class_id" class="form-control">
+                        <option value="">Select Class</option>
+                        @foreach ($class as $cla)
+                        <option value="{{$cla->class_id}}">{{$cla->class_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Level Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="level_id" id="level_id" class="form-control">
+                        <option value="">Select Level</option>
+                        @foreach ($level as $lv)
+
+                        <option value="{{$lv->level_id}}">{{$lv->level}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Shift Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="shift_id" id="shift_id" class="form-control">
+                        <option value="">Select Shift</option>
+                        @foreach ($shift as $shi)
+                        <option value="{{$shi->shift_id}}">{{$shi->shift}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Classroom Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="classroom_id" id="classroom_id" class="form-control">
+                        <option value="">Select Classroom</option>
+                        @foreach ($classroom as $room)
+                        <option value="{{$room->classroom_id}}">{{$room->classroom_name}}__{{$room->classroom_code}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Batch Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="batch_id" id="batch_id" class="form-control">
+                        <option value="">Select Batch</option>
+                        @foreach ($batch as $bat)
+                        <option value="{{$bat->batch_id}}">{{$bat->year}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Day Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="day_id" id="day_id" class="form-control">
+                        <option value="">Select Day</option>
+                        @foreach ($day as $d)
+                        <option value="{{$d->day_id}}">{{$d->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Time Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="time_id" id="time_id" class="form-control">
+                        <option value="">Select Time</option>
+                        @foreach ($time as $ti)
+                        <option value="{{$ti->time_id}}">{{$ti->time}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Semester Id Field -->
+                <div class="form-group col-sm-6">
+                    <select name="semester_id" id="semester_id" class="form-control">
+                        <option value="">Select Semester</option>
+                        @foreach ($semester as $sem)
+                        <option value="{{$sem->semester_id}}">{{$sem->semester_name}}__{{$sem->semester_code}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Status Field -->
+                <div class="form-group col-sm-6">
+                    {!! Form::label('status', 'Status:') !!}
+                    <label>
+                        {!! Form::hidden('status', 0) !!}
+                        {!! Form::checkbox('status', '1', null) !!}
+                    </label>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+            </div>
+        </div>
+    </div>
 </div>
