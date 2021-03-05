@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateClassScheduleRequest;
 use App\Repositories\ClassScheduleRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use DB;
 use Flash;
 use Response;
 
@@ -48,10 +49,30 @@ class ClassScheduleController extends AppBaseController
         $shift = Shift::all();
         $classroom = ClassRoom::all();
         $time = Time::all();
-
-        $classSchedules = $this->classScheduleRepository->all();
-
-        return view('class_schedules.index',compact('batch','class','course','day','level','semester','shift','classroom','time'))
+        $classSchedules = DB::table('class_schedules')->select(
+            'courses.*',
+            'batches.*',
+            'levels.*',
+            'days.*',
+            'semesters.*',
+            'classes.*',
+            'classrooms.*',
+            'shifts.*',
+            'times.*',
+            'class_schedules.*'
+        )
+        ->join('courses','courses.course_id','=','class_schedules.course_id')
+        ->join('batches','batches.batch_id','=','class_schedules.batch_id')
+        ->join('classes','classes.class_id','=','class_schedules.class_id')
+        ->join('days','days.day_id','=','class_schedules.day_id')
+        ->join('levels','levels.level_id','=','class_schedules.level_id')
+        ->join('semesters','semesters.semester_id','=','class_schedules.semester_id')
+        ->join('classrooms','classrooms.classroom_id','=','class_schedules.classroom_id')
+        ->join('shifts','shifts.shift_id','=','class_schedules.shift_id')
+        ->join('times','times.time_id','=','class_schedules.time_id')
+        ->get();
+        
+        return view('class_schedules.index',compact('classschedules','batch','class','course','day','level','semester','shift','classroom','time'))
             ->with('classSchedules', $classSchedules);
     }
 

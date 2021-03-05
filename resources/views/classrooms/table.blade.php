@@ -17,9 +17,9 @@
                 <td>{{ $classroom->classroom_description }}</td>
                 <td>
                     @if ($classroom->classroom_status == 1)
-                    <i class="fa fa-check-square-o"></i>
+                    <i style="color: green"  class="fa fa-check-square-o"></i>
                     @else
-                    <i class="fa fa-square-o"></i>
+                    <i style="color: red"  class="fa fa-square-o"></i>
                     @endif
                 </td>
                 <td>
