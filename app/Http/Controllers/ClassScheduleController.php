@@ -71,11 +71,17 @@ class ClassScheduleController extends AppBaseController
         ->join('shifts','shifts.shift_id','=','class_schedules.shift_id')
         ->join('times','times.time_id','=','class_schedules.time_id')
         ->get();
-        
+
         return view('class_schedules.index',compact('classschedules','batch','class','course','day','level','semester','shift','classroom','time'))
             ->with('classSchedules', $classSchedules);
     }
 
+    public function DynamicLevel(Request $request)
+    {
+        $course_id = $request->get('course_id');
+        $levels = Level::where('course_id','=',$course_id)->get();
+        return response()->json($levels);
+    }
     /**
      * Show the form for creating a new ClassSchedule.
      *

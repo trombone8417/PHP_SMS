@@ -38,6 +38,18 @@
                         format: 'YYYY-MM-DD',
                         useCurrent: false
                     })
+                    $('#course_id').on('change',function(e){
+                        console.log(e)
+                        var course_id = e.target.value;
+                        console.log (course_id);
+                        $('#level_id').empty();
+                        $.get('dynamicLevel?course_id='+course_id,function(data){
+                            console.log(data);
+                            $.each(data,function(index,lev){
+                                $('#level_id').append('<option value="'+lev.level_id+'">'+lev.level+'</option>');
+                            });
+                        });
+                    });
                 </script>
                 @endpush
                 <!-- Course Id Field -->
@@ -64,10 +76,10 @@
                 <div class="form-group col-sm-6">
                     <select name="level_id" id="level_id" class="form-control">
                         <option value="">Select Level</option>
-                        @foreach ($level as $lv)
+                        {{-- @foreach ($level as $lv)
 
                         <option value="{{$lv->level_id}}">{{$lv->level}}</option>
-                        @endforeach
+                        @endforeach --}}
                     </select>
                 </div>
 
