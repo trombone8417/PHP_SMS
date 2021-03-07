@@ -20,6 +20,8 @@ use App\models\Level;
 use App\models\Semester;
 use App\models\Shift;
 use App\models\Time;
+use App\models\ClassSchedule;
+
 
 class ClassScheduleController extends AppBaseController
 {
@@ -137,17 +139,12 @@ class ClassScheduleController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $classSchedule = $this->classScheduleRepository->find($id);
+        if ($request->ajax()) {
 
-        if (empty($classSchedule)) {
-            Flash::error('Class Schedule not found');
-
-            return redirect(route('classSchedules.index'));
+            return response(ClassSchedule::find($request->id));
         }
-
-        return view('class_schedules.edit')->with('classSchedule', $classSchedule);
     }
 
     /**

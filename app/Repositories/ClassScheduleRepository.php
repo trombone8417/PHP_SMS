@@ -13,6 +13,7 @@ use App\Repositories\BaseRepository;
 
 class ClassScheduleRepository extends BaseRepository
 {
+    protected $primaryKey = 'schedule_id';
     /**
      * @var array
      */

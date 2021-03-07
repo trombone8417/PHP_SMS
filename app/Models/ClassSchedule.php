@@ -28,11 +28,11 @@ class ClassSchedule extends Model
     use SoftDeletes;
 
     public $table = 'class_schedules';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
+    protected $primaryKey = 'schedule_id';
     protected $dates = ['deleted_at'];
 
 
@@ -96,5 +96,5 @@ class ClassSchedule extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

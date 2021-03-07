@@ -1,4 +1,5 @@
 * text=auto
+*.blade.php diff=php
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
