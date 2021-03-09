@@ -9,9 +9,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="{{route('classSchedules.update','Scheduleid')}}" method="post">
+                @csrf
+                @method('PUT')
             <div class="modal-body">
 
-
+    <input type="hidden" name="Scheduleid" id="Scheduleid">
                 <!-- Start Date Field -->
                 <div class="form-group col-sm-6">
                     <label>Start Date</label>
@@ -53,9 +56,9 @@
                         });
                     });
                     $(document).on('click','#Edit', function(data){
-                        var id = $(this).data('id');
-                        console.log(id)
-                        $.get("{{route('edit')}}",{id:id},function(data){
+                        var Scheduleid = $(this).data('id');
+
+                        $.get("{{route('edit')}}",{Scheduleid:Scheduleid},function(data){
                             $("#class_id").val(data.class_id);
                             $("#course_id1").val(data.course_id);
                             $("#shift_id").val(data.shift_id);
@@ -65,10 +68,11 @@
                             $("#semester_id").val(data.semester_id);
                             $("#start_date1").val(data.start_date);
                             $("#end_date1").val(data.end_date);
-                            $("#id").val(data.id);
+                            $("#Scheduleid").val(Scheduleid);
+                            $("#day_id").val(data.day_id);
                             $("#status").val(data.status);
                             $("#level_id").val(data.level_id);
-                            console.log(data)
+                            
                             // Jquery execute onchange event on onload
                             $("select#course_id1").change();
                         });
@@ -167,8 +171,7 @@
                     </select>
                 </div>
 
-                <!-- Status Field -->
-                <div class="form-group col-sm-6">
+                <div class="form-group col-sm-6" name="status" id="status">
                     {!! Form::label('status', 'Status:') !!}
                     <label>
                         {!! Form::hidden('status', 0) !!}
@@ -176,12 +179,12 @@
                     </label>
                 </div>
 
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
+                <button type="submit" class="btn btn-success">Edit</button>
             </div>
+
         </div>
     </div>
 </div>
+</form>

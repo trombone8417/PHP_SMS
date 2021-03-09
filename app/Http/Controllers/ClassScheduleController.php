@@ -124,7 +124,7 @@ class ClassScheduleController extends AppBaseController
         $classSchedule = $this->classScheduleRepository->find($id);
 
         if (empty($classSchedule)) {
-            Flash::error('Class Schedule not found');
+            Flash::error('Class Schedule not found(show)');
 
             return redirect(route('classSchedules.index'));
         }
@@ -143,7 +143,7 @@ class ClassScheduleController extends AppBaseController
     {
         if ($request->ajax()) {
 
-            return response(ClassSchedule::find($request->id));
+            return response(ClassSchedule::find($request->Scheduleid));
         }
     }
 
@@ -155,20 +155,27 @@ class ClassScheduleController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateClassScheduleRequest $request)
+    public function update(Request $request)
     {
-        $classSchedule = $this->classScheduleRepository->find($id);
-
+        $classSchedule = array(
+            'class_id' => $request->class_id,
+            'course_id' => $request->course_id,
+            'shift_id' => $request->shift_id,
+            'time_id' => $request->time_id,
+            'classroom_id' => $request->classroom_id,
+            'batch_id' => $request->batch_id,
+            'semester_id' => $request->semester_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'day_id' => $request->day_id,
+            'status' => $request->status,
+            'level_id' => $request->level_id,
+        );
+        ClassSchedule::FindOrFail($request->Scheduleid)->update($classSchedule);
         if (empty($classSchedule)) {
-            Flash::error('Class Schedule not found');
-
-            return redirect(route('classSchedules.index'));
+            Flash::error('Class Schedule not found(update)');
         }
-
-        $classSchedule = $this->classScheduleRepository->update($request->all(), $id);
-
-        Flash::success('Class Schedule updated successfully.');
-
+        Flash::success('Class Schedule Updated Successfully');
         return redirect(route('classSchedules.index'));
     }
 
@@ -186,7 +193,7 @@ class ClassScheduleController extends AppBaseController
         $classSchedule = $this->classScheduleRepository->find($id);
 
         if (empty($classSchedule)) {
-            Flash::error('Class Schedule not found');
+            Flash::error('Class Schedule not found(destroy)');
 
             return redirect(route('classSchedules.index'));
         }
