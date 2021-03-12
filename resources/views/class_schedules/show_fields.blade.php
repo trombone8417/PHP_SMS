@@ -1,72 +1,93 @@
-<!-- Course Id Field -->
-<div class="form-group">
-    {!! Form::label('course_id', 'Course Id:') !!}
-    <p>{{ $classSchedule->course_id }}</p>
-</div>
+<!-- Modal -->
+<div class="modal fade" id="class_schedules-view-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Class Schedules View</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-<!-- Class Id Field -->
-<div class="form-group">
-    {!! Form::label('class_id', 'Class Id:') !!}
-    <p>{{ $classSchedule->class_id }}</p>
-</div>
+                <input type="hidden" name="Scheduleid" id="Scheduleid">
+                <!-- Start Date Field -->
+                <div class="form-group col-sm-6">
+                    <label>Start Date</label>
+                    <input type="text" name="start_date" id="start_date2" class="form-control"  disabled>
+                </div>
 
-<!-- Level Id Field -->
-<div class="form-group">
-    {!! Form::label('level_id', 'Level Id:') !!}
-    <p>{{ $classSchedule->level_id }}</p>
-</div>
 
-<!-- Shift Id Field -->
-<div class="form-group">
-    {!! Form::label('shift_id', 'Shift Id:') !!}
-    <p>{{ $classSchedule->shift_id }}</p>
-</div>
+                <!-- End Date Field -->
+                <div class="form-group col-sm-6">
+                    <label>End Date</label>
+                    <input type="text" name="end_date" id="end_date2" class="form-control"  disabled>
+                </div>
+                <!-- Course Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Course</label>
+                    <input type="text" name="course_id" id="course_id2" class="form-control" disabled>
+                </div>
 
-<!-- Classroom Id Field -->
-<div class="form-group">
-    {!! Form::label('classroom_id', 'Classroom Id:') !!}
-    <p>{{ $classSchedule->classroom_id }}</p>
-</div>
+                <!-- Class Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Class</label>
+                    <input type="text" type="text" name="class_id" id="class_id2" class="form-control" disabled>
+                </div>
 
-<!-- Batch Id Field -->
-<div class="form-group">
-    {!! Form::label('batch_id', 'Batch Id:') !!}
-    <p>{{ $classSchedule->batch_id }}</p>
-</div>
+                <!-- Level Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Level</label>
+                    <input type="text" name="level_id" id="level_id2" class="form-control" disabled>
+                </div>
 
-<!-- Day Id Field -->
-<div class="form-group">
-    {!! Form::label('day_id', 'Day Id:') !!}
-    <p>{{ $classSchedule->day_id }}</p>
-</div>
+                <!-- Shift Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Shift</label>
+                    <input type="text" name="shift_id" id="shift_id2" class="form-control" disabled>
+                </div>
 
-<!-- Time Id Field -->
-<div class="form-group">
-    {!! Form::label('time_id', 'Time Id:') !!}
-    <p>{{ $classSchedule->time_id }}</p>
-</div>
+                <!-- Classroom Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Classroom</label>
+                    <input type="text" name="classroom_id" id="classroom_id2" class="form-control" disabled>
+                </div>
 
-<!-- Semester Id Field -->
-<div class="form-group">
-    {!! Form::label('semester_id', 'Semester Id:') !!}
-    <p>{{ $classSchedule->semester_id }}</p>
-</div>
+                <!-- Batch Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Year</label>
+                    <input type="text" name="batch_id" id="batch_id2" class="form-control" disabled>
+                </div>
 
-<!-- Start Date Field -->
-<div class="form-group">
-    {!! Form::label('start_date', 'Start Date:') !!}
-    <p>{{ $classSchedule->start_date }}</p>
-</div>
+                <!-- Day Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Day</label>
+                    <input type="text" name="day_id" id="day_id2" class="form-control" disabled>
+                </div>
 
-<!-- End Date Field -->
-<div class="form-group">
-    {!! Form::label('end_date', 'End Date:') !!}
-    <p>{{ $classSchedule->end_date }}</p>
-</div>
+                <!-- Time Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Time</label>
+                    <input type="text" name="time_id" id="time_id2" class="form-control" disabled>
+                </div>
 
-<!-- Status Field -->
-<div class="form-group">
-    {!! Form::label('status', 'Status:') !!}
-    <p>{{ $classSchedule->status }}</p>
-</div>
+                <!-- Semester Id Field -->
+                <div class="form-group col-sm-6">
+                    <label>Semester</label>
+                    <input type="text" name="semester_id" id="semester_id2" class="form-control" disabled>
+                </div>
 
+                <div class="form-group col-sm-6">
+                    <label>status</label>
+                    <input type="hidden" name="status" value="0"  disabled>
+                    <input type="checkbox" name="status" id="status2" value="1"  disabled/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-sm" data-dismiss="modal">close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
