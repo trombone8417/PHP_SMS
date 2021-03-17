@@ -29,14 +29,14 @@ class Teacher extends Model
     use SoftDeletes;
 
     public $table = 'teachers';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
 
-
+    protected $primaryKey = 'teacher_id';
 
     public $fillable = [
         'first_name',
@@ -100,5 +100,5 @@ class Teacher extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }
