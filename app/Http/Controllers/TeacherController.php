@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Teacher;
 
 class TeacherController extends AppBaseController
 {
@@ -29,6 +30,7 @@ class TeacherController extends AppBaseController
      */
     public function index(Request $request)
     {
+
         $teachers = $this->teacherRepository->all();
 
         return view('teachers.index')
@@ -42,6 +44,7 @@ class TeacherController extends AppBaseController
      */
     public function create()
     {
+
         return view('teachers.create');
     }
 
@@ -56,8 +59,29 @@ class TeacherController extends AppBaseController
     {
         $input = $request->all();
 
-        $teacher = $this->teacherRepository->create($input);
+        // name=images
+        $image = $request->file('images');
+        // 圖片的原始名稱
+        $image_oragin_name = $image->getClientOriginalName();
+        // 儲存圖片名稱=Timestamp+圖片的原始名稱
+        $image_name = Time().'_'.$image_oragin_name;
+        $image->move(public_path('teacher_images'),$image_name);
 
+        $teacher = new Teacher;
+        $teacher->first_name = $request->first_name;
+        $teacher->last_name = $request->last_name;
+        $teacher->gender = $request->gender;
+        $teacher->email = $request->email;
+        $teacher->dob = $request->dob;
+        $teacher->phone = $request->phone;
+        $teacher->address = $request->address;
+        $teacher->nationality = $request->nationality;
+        $teacher->passport = $request->passport;
+        $teacher->status = $request->status;
+        $teacher->dateregistered = $request->dateregistered;
+        $teacher->user_id = $request->user_id;
+        $teacher->image = $image_name;
+        $teacher->save();
         Flash::success('Teacher saved successfully.');
 
         return redirect(route('teachers.index'));
@@ -72,6 +96,7 @@ class TeacherController extends AppBaseController
      */
     public function show($id)
     {
+
         $teacher = $this->teacherRepository->find($id);
 
         if (empty($teacher)) {

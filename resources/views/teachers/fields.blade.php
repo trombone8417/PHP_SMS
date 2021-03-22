@@ -66,7 +66,7 @@
                 <!-- Dob Field -->
                 <div class="form-group col-sm-6">
                     <label>Date of Birth</label>
-                    <input type="text" name="dob" id="dob" class="form-control" placeholder="Date of Birth">
+                    <input type="text" name="dob" id="dob" class="form-control" placeholder="Date of Birth" autocomplete="off">
                 </div>
 
                 <!-- Phone Field -->
@@ -102,7 +102,7 @@
 
                     {!! Html::image('student_images/profile.jpg', null, ['class' => 'student-image','id' =>
                     'showImage']) !!}
-                    <input type="file" name="image" id="image" accept="image/x-png, image/png, image/jpg, image/jpeg">
+                    <input type="file" name="images" id="image" accept="image/x-png, image/png, image/jpg, image/jpeg">
                     <input type="button" name="browse_file" id="browse_file"
                         class="form-control text-capitalize btn-browse" class="btn btn-outline-danger" value="Choose">
                 </div>
