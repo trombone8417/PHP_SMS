@@ -22,7 +22,7 @@ class FacultyRepository extends BaseRepository
         'faculty_description',
         'faculty_status'
     ];
-
+    protected $primaryKey = 'faculty_id';
     /**
      * Return searchable fields
      *

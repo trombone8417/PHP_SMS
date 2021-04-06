@@ -21,13 +21,13 @@ class Department extends Model
     use SoftDeletes;
 
     public $table = 'departments';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
-
+    protected $primaryKey = 'department_id';
 
 
     public $fillable = [
@@ -68,5 +68,5 @@ class Department extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

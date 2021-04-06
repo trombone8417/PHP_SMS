@@ -6,8 +6,12 @@ use App\Http\Requests\CreateDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Repositories\DepartmentRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Department;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
+
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class DepartmentController extends AppBaseController
@@ -29,9 +33,10 @@ class DepartmentController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $departments = $this->departmentRepository->all();
-
-        return view('departments.index')
+        $faculties=Faculty::all();
+        $departments = Department::join('faculties','departments.faculty_id','=','faculties.faculty_id')->get();
+        //$departments = DB::select('SELECT * FROM departments JOIN faculties ON departments.faculty_id = faculties.faculty_id');
+        return view('departments.index',compact('faculties'))
             ->with('departments', $departments);
     }
 
@@ -73,7 +78,6 @@ class DepartmentController extends AppBaseController
     public function show($id)
     {
         $department = $this->departmentRepository->find($id);
-
         if (empty($department)) {
             Flash::error('Department not found');
 
@@ -92,6 +96,7 @@ class DepartmentController extends AppBaseController
      */
     public function edit($id)
     {
+        $faculties=Faculty::all();
         $department = $this->departmentRepository->find($id);
 
         if (empty($department)) {
@@ -100,7 +105,7 @@ class DepartmentController extends AppBaseController
             return redirect(route('departments.index'));
         }
 
-        return view('departments.edit')->with('department', $department);
+        return view('departments.edit',compact('faculties'))->with('department', $department);
     }
 
     /**
