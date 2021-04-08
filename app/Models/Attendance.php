@@ -21,10 +21,10 @@ class Attendance extends Model
     use SoftDeletes;
 
     public $table = 'attendances';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
+    protected $primaryKey = 'student_id';
 
     protected $dates = ['deleted_at'];
 
@@ -68,5 +68,5 @@ class Attendance extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

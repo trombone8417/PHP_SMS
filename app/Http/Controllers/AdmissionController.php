@@ -6,6 +6,11 @@ use App\Http\Requests\CreateAdmissionRequest;
 use App\Http\Requests\UpdateAdmissionRequest;
 use App\Repositories\AdmissionRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Admission;
+use App\Models\Batch;
+use App\Models\Department;
+use App\Models\Faculty;
+use App\Roll;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -29,10 +34,12 @@ class AdmissionController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $admissions = $this->admissionRepository->all();
-
-        return view('admissions.index')
-            ->with('admissions', $admissions);
+        $batches = Batch::all();
+        $admissions = Admission::all();
+        $student_id = Roll::max('roll_id');
+        $faculties = Faculty::all();
+        $departments = Department::all();
+        return view('admissions.index',compact('batches','admissions','student_id','faculties','departments'));
     }
 
     /**
@@ -56,8 +63,37 @@ class AdmissionController extends AppBaseController
     {
         $input = $request->all();
 
-        $admission = $this->admissionRepository->create($input);
+        //$admission = $this->admissionRepository->create($input);
 
+        // name=images
+        $image = $request->file('images');
+        // 圖片的原始名稱
+        $image_oragin_name = $image->getClientOriginalName();
+        // 儲存圖片名稱=Timestamp+圖片的原始名稱
+        $image_name = Time().'_'.$image_oragin_name;
+        $image->move(public_path('student_images'),$image_name);
+
+        $student = new Student;
+        $student->roll_no= $request->roll_no;
+        $student->first_name= $request->first_name;
+        $student->last_name= $request->last_name;
+        $student->father_name= $request->father_name;
+        $student->father_phone= $request->father_phone;
+        $student->mother_name= $request->mother_name;
+        $student->gender= $request->gender;
+        $student->email= $request->email;
+        $student->dob= $request->dob;
+        $student->phone= $request->phone;
+        $student->address= $request->address;
+        $student->current_address= $request->current_address;
+        $student->nationality= $request->nationality;
+        $student->passport= $request->passport;
+        $student->status= $request->status;
+        $student->dateregistered= $request->dateregistered;
+        $student->user_id= $request->user_id;
+        $student->class_id= $request->class_id;
+        $student->image= $image_name;
+        $student->save();
         Flash::success('Admission saved successfully.');
 
         return redirect(route('admissions.index'));

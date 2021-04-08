@@ -1,141 +1,206 @@
-<!-- Roll No Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('roll_no', 'Roll No:') !!}
-    {!! Form::text('roll_no', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+<style>
+    .student-image,
+    .image>input[type="button"] {
+        width: 100px;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-<!-- First Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('first_name', 'First Name:') !!}
-    {!! Form::text('first_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+    .image>input[type="file"] {
+        display: none;
+    }
+</style>
+{{-- modal 彈出視窗 header(頭) --}}
+<div class="modal fade bd-example-modal-lg" id="admission-add-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" value="{{Auth::id()}}" name="user_id" id="user_id" required>
+                <input type="hidden" name="dateregistered" id="dateregistered" value="{{date('Y-m-d')}}">
+                {{-- modal 彈出視窗 header(尾) --}}
+                <!-- Roll No Field -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Student
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group col-sm-3">
+                                <label>Roll No</label>
+                                <input type="text" name="roll_no" id="roll_no" class="form-control" autocomplete="off" placeholder="Roll No">
+                            </div>
+                            <!-- First Name Field -->
+                            <div class="form-group col-sm-3">
+                                <label>First Name</label>
+                                <input type="text" name="first_name" id="first_name" class="form-control" autocomplete="off" placeholder="First Name">
+                            </div>
+                            <!-- Last Name Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name" id="last_name" class="form-control" autocomplete="off" placeholder="Last Name">
+                            </div>
+                            <!-- Image Field -->
+                            <div class="form-group col-sm-3 image">
+                                {!! Html::image('student_images/profile.jpg', null, ['class' => 'student-image','id' =>
+                                'showImage']) !!}
+                                <input type="file" name="images" id="image" accept="image/x-png, image/png, image/jpg, image/jpeg">
+                                <input type="button" name="browse_file" id="browse_file" class="form-control text-capitalize btn-browse" class="btn btn-outline-danger" value="Choose">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Email Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Email</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+                            </div>
+                            <!-- Dob Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Date of Birth</label>
+                                <input type="text" name="dob" id="dob" class="form-control" placeholder="Date of Birth" autocomplete="off">
+                            </div>
 
-<!-- Last Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('last_name', 'Last Name:') !!}
-    {!! Form::text('last_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                            @push('scripts')
+                            <script type="text/javascript">
+                                $('#dob').datetimepicker({
+                                    format: 'YYYY-MM-DD HH:mm:ss',
+                                    useCurrent: false
+                                })
+                            </script>
+                            @endpush
+                            <!-- Phone Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Phone</label>
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
+                            </div>
+                            <!-- Gender Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Gender : </label><br>
+                                <label><input type="radio" name="gender" id="gender" value="0">Male</label>
+                                <label><input type="radio" name="gender" id="gender" value="1">Female</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Nationality Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Nationality</label>
+                                <input type="text" name="nationality" id="nationality" class="form-control" placeholder="Nationality">
+                            </div>
 
-<!-- Father Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('father_name', 'Father Name:') !!}
-    {!! Form::text('father_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                            <!-- Passport Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Passport</label>
+                                <input type="text" name="passport" id="passport" class="form-control" placeholder="Passport">
+                            </div>
+                            <!-- Class Id Field -->
+                            <div class="form-group col-sm-3">
+                                {!! Form::label('class_id', 'Class Id:') !!}
+                                {!! Form::number('class_id', null, ['class' => 'form-control']) !!}
+                            </div>
+                            <!-- Status Field -->
+                            <div class="form-group col-sm-3">
+                                <label>Status : </label><br>
+                                <label><input type="radio" name="status" id="status" value="0" required checked>Single</label>
+                                <label><input type="radio" name="status" id="status" value="1" required>Married</label>
+                            </div>
+                        </div>
+                        @push('scripts')
+                        <script type="text/javascript">
+                            $('#dateregistered').datetimepicker({
+                                format: 'YYYY-MM-DD HH:mm:ss',
+                                useCurrent: false
+                            })
+                        </script>
+                        @endpush
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Family
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Father Name Field -->
+                        <div class="form-group col-sm-4">
+                            <label>Father Name</label>
+                            <input type="text" name="father_name" id="father_name" class="form-control" autocomplete="off" placeholder="Father Name">
+                        </div>
 
-<!-- Father Phone Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('father_phone', 'Father Phone:') !!}
-    {!! Form::text('father_phone', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                        <!-- Father Phone Field -->
+                        <div class="form-group col-sm-4">
+                            <label>Father Phone</label>
+                            <input type="text" name="father_phone" id="father_phone" class="form-control" autocomplete="off" placeholder="Father Phone">
+                        </div>
 
-<!-- Mother Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('mother_name', 'Mother Name:') !!}
-    {!! Form::text('mother_name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                        <!-- Mother Name Field -->
+                        <div class="form-group col-sm-4">
+                            <label>Mother Name</label>
+                            <input type="text" name="mother_name" id="mother_name" class="form-control" autocomplete="off" placeholder="Mother Name">
+                        </div>
 
-<!-- Gender Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('gender', 'Gender:') !!}
-    {!! Form::text('gender', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                        <!-- Address Field -->
+                        <div class="form-group col-sm-6">
+                            <label>Address</label>
+                            <textarea type="text" name="address" id="address" cols="40" rows="2" class="form-control" placeholder="Address"></textarea>
+                        </div>
 
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
+                        <!-- Current Address Field -->
+                        <div class="form-group col-sm-6">
+                            <label>Current Address</label>
+                            <textarea type="text" name="current_address" id="current_address" cols="40" rows="2" class="form-control" placeholder="Current Address"></textarea>
+                        </div>
 
-<!-- Dob Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('dob', 'Dob:') !!}
-    {!! Form::date('dob', null, ['class' => 'form-control','id'=>'dob']) !!}
+                    </div>
+                </div>
+                {{-- modal 彈出視窗 footer(頭) --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                <!-- Submit Field -->
+                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+            </div>
+        </div>
+    </div>
 </div>
+{{-- modal 彈出視窗 footer(尾) --}}
+
 
 @push('scripts')
-    <script type="text/javascript">
-        $('#dob').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
+<script type="text/javascript">
+    $('#dob').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    })
+    $('#dateregistered').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',
+        useCurrent: false
+    })
+    $('#browse_file').on('click', function() {
+        $('#image').click();
+    })
+    $('#image').on('change', function(e) {
+        showFile(this, '#showImage');
+    })
+
+    function showFile(fileInput, img, showName) {
+        if (fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(img).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+        $(showName).text(fileInput.files[0].name)
+    }
+</script>
 @endpush
-
-<!-- Phone Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('phone', 'Phone:') !!}
-    {!! Form::text('phone', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
-
-<!-- Address Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('address', 'Address:') !!}
-    {!! Form::textarea('address', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Current Address Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('current_address', 'Current Address:') !!}
-    {!! Form::textarea('current_address', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Nationality Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('nationality', 'Nationality:') !!}
-    {!! Form::text('nationality', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
-
-<!-- Passport Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('passport', 'Passport:') !!}
-    {!! Form::text('passport', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
-
-<!-- Status Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('status', 'Status:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('status', 0) !!}
-        {!! Form::checkbox('status', '1', null) !!}
-    </label>
-</div>
-
-
-<!-- Dateregistered Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('dateregistered', 'Dateregistered:') !!}
-    {!! Form::date('dateregistered', null, ['class' => 'form-control','id'=>'dateregistered']) !!}
-</div>
-
-@push('scripts')
-    <script type="text/javascript">
-        $('#dateregistered').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endpush
-
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Class Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('class_id', 'Class Id:') !!}
-    {!! Form::number('class_id', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Image Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('image', 'Image:') !!}
-    {!! Form::text('image', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('admissions.index') }}" class="btn btn-default">Cancel</a>
-</div>

@@ -1,6 +1,6 @@
 <style>
     .student-image,
-    .image>input[type="button"] {
+    .images>input[type="button"] {
         width: 100px;
         height: auto;
         display: block;
@@ -44,7 +44,7 @@
 
                 <!-- Gender Field -->
                 <div class="form-group col-sm-6">
-                    <label>Last Name : </label><br>
+                    <label>Gender : </label><br>
                     <label><input type="radio" name="gender" id="gender" value="0">Male</label>
                     <label><input type="radio" name="gender" id="gender" value="1">Female</label>
                 </div>
