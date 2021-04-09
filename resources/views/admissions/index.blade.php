@@ -17,11 +17,11 @@
         <div class="box box-primary">
             <div class="box-body">
                     @include('admissions.table')
-                    {!! Form::open(['route' => 'admissions.store']) !!}
-
+                    <form method="POST" action="{{route('admissions.store')}}" enctype="multipart/form-data">
+                        @csrf
                         @include('admissions.fields')
-
-                    {!! Form::close() !!}
+                    </form>
+                    
             </div>
         </div>
         <div class="text-center">

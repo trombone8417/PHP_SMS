@@ -35,7 +35,7 @@ class Admission extends Model
     use SoftDeletes;
 
     public $table = 'admissions';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -62,7 +62,9 @@ class Admission extends Model
         'status',
         'dateregistered',
         'user_id',
-        'class_id',
+        'department_id',
+        'faculty_id',
+        'batch_id',
         'image'
     ];
 
@@ -90,7 +92,9 @@ class Admission extends Model
         'status' => 'boolean',
         'dateregistered' => 'date',
         'user_id' => 'integer',
-        'class_id' => 'integer',
+        'department_id' => 'integer',
+        'faculty_id' => 'integer',
+        'batch_id' => 'integer',
         'image' => 'string'
     ];
 
@@ -117,12 +121,14 @@ class Admission extends Model
         'status' => 'required|boolean',
         'dateregistered' => 'required',
         'user_id' => 'required|integer',
-        'class_id' => 'required|integer',
+        'department_id' => 'required|integer',
+        'faculty_id' => 'required|integer',
+        'batch_id' => 'required|integer',
         'image' => 'nullable|string|max:255',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

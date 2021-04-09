@@ -17,12 +17,15 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Teacher</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Admission</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" name="username" id="username" value="{{$rand_username_password}}">
+                <input type="hidden" name="password" id="password" value="{{$rand_username_password}}">
+                <input type="hidden" name="roll_no" id="roll_no" value="{{$roll_id}}">
                 <input type="hidden" value="{{Auth::id()}}" name="user_id" id="user_id" required>
                 <input type="hidden" name="dateregistered" id="dateregistered" value="{{date('Y-m-d')}}">
                 {{-- modal 彈出視窗 header(尾) --}}
@@ -35,10 +38,10 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="form-group col-sm-3">
+                            {{-- <div class="form-group col-sm-3">
                                 <label>Roll No</label>
                                 <input type="text" name="roll_no" id="roll_no" class="form-control" autocomplete="off" placeholder="Roll No">
-                            </div>
+                            </div> --}}
                             <!-- First Name Field -->
                             <div class="form-group col-sm-3">
                                 <label>First Name</label>
@@ -101,10 +104,36 @@
                                 <label>Passport</label>
                                 <input type="text" name="passport" id="passport" class="form-control" placeholder="Passport">
                             </div>
-                            <!-- Class Id Field -->
+
                             <div class="form-group col-sm-3">
-                                {!! Form::label('class_id', 'Class Id:') !!}
-                                {!! Form::number('class_id', null, ['class' => 'form-control']) !!}
+                                <label>Department</label>
+                                <select name="department_id" id="department_id" class="form-control">
+                                    <option value="0" selected="true" disabled="true">Choose Department</option>
+                                    @foreach ($departments as $department)
+                                    <option value="{{$department->department_id}}">{{$department->department_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label>Faculty</label>
+                                <select name="faculty_id" id="faculty_id" class="form-control">
+                                    <option value="0" selected="true" disabled="true">Choose Faculty</option>
+                                    @foreach ($faculties as $faculty)
+                                    <option value="{{$faculty->faculty_id}}">{{$faculty->faculty_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-3">
+                                <label>Batch</label>
+                                <select name="batch_id" id="batch_id" class="form-control">
+                                    <option value="0" selected="true" disabled="true">Choose Batch</option>
+                                    @foreach ($batches as $batch)
+                                    <option value="{{$batch->batch_id}}">{{$batch->year}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <!-- Status Field -->
                             <div class="form-group col-sm-3">

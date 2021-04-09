@@ -22,6 +22,7 @@
             @include('classrooms.fields')
 
             {!! Form::close() !!}
+            
         </div>
     </div>
     <div class="text-center">

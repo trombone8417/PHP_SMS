@@ -36,10 +36,15 @@ class AdmissionController extends AppBaseController
     {
         $batches = Batch::all();
         $admissions = Admission::all();
-        $student_id = Roll::max('roll_id');
+        $roll_id = Roll::max('roll_id');
+        if($roll_id==null){
+            $roll_id=0;
+        }
+        $student_id = Admission::max('student_id');
         $faculties = Faculty::all();
         $departments = Department::all();
-        return view('admissions.index',compact('batches','admissions','student_id','faculties','departments'));
+        $rand_username_password = mt_rand(1111609300011 .$student_id , 1111609300011 . $student_id );
+        return view('admissions.index',compact('batches','admissions','roll_id','student_id','faculties','departments','rand_username_password'));
     }
 
     /**
@@ -73,7 +78,7 @@ class AdmissionController extends AppBaseController
         $image_name = Time().'_'.$image_oragin_name;
         $image->move(public_path('student_images'),$image_name);
 
-        $student = new Student;
+        $student = new Admission;
         $student->roll_no= $request->roll_no;
         $student->first_name= $request->first_name;
         $student->last_name= $request->last_name;
@@ -91,9 +96,16 @@ class AdmissionController extends AppBaseController
         $student->status= $request->status;
         $student->dateregistered= $request->dateregistered;
         $student->user_id= $request->user_id;
-        $student->class_id= $request->class_id;
+        $student->department_id= $request->department_id;
+        $student->faculty_id= $request->faculty_id;
+        $student->batch_id= $request->batch_id;
         $student->image= $image_name;
-        $student->save();
+        if($student->save()){
+            $student_id=$student->id;
+            $username = $student->username;
+            $password = $student->password;
+            Roll::insert( ['student_id'=> $student_id,'username'=>$request->username,'password'=>$request->password]);
+        }
         Flash::success('Admission saved successfully.');
 
         return redirect(route('admissions.index'));
