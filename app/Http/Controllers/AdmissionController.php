@@ -154,7 +154,7 @@ class AdmissionController extends AppBaseController
             return redirect(route('admissions.index'));
         }
 
-        return view('admissions.edit')->with('admission', $admission);
+        return view('admissions.edit',compact('batches','faculties','departments'))->with('admission', $admission);
     }
 
     /**
