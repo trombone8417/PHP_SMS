@@ -35,7 +35,6 @@ class AdmissionController extends AppBaseController
     public function index(Request $request)
     {
         $batches = Batch::all();
-        $admissions = Admission::all();
         $roll_id = Roll::max('roll_id');
         if($roll_id==null){
             $roll_id=0;
@@ -43,6 +42,9 @@ class AdmissionController extends AppBaseController
         $student_id = Admission::max('student_id');
         $faculties = Faculty::all();
         $departments = Department::all();
+        $admissions = Admission::join('faculties','faculties.faculty_id','admissions.faculty_id')
+                                ->join('departments','departments.department_id','admissions.department_id')
+                                ->join('batches','batches.batch_id','admissions.batch_id')->get();
         $rand_username_password = mt_rand(1111609300011 .$student_id , 1111609300011 . $student_id );
         return view('admissions.index',compact('batches','admissions','roll_id','student_id','faculties','departments','rand_username_password'));
     }
@@ -140,6 +142,10 @@ class AdmissionController extends AppBaseController
      */
     public function edit($id)
     {
+        $batches = Batch::all();
+        $faculties = Faculty::all();
+        $departments = Department::all();
+
         $admission = $this->admissionRepository->find($id);
 
         if (empty($admission)) {

@@ -41,7 +41,7 @@ class Admission extends Model
 
 
     protected $dates = ['deleted_at'];
-
+    protected $primaryKey = 'student_id';
 
 
     public $fillable = [

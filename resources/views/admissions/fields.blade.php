@@ -23,11 +23,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="username" id="username" value="{{$rand_username_password}}">
-                <input type="hidden" name="password" id="password" value="{{$rand_username_password}}">
-                <input type="hidden" name="roll_no" id="roll_no" value="{{$roll_id}}">
-                <input type="hidden" value="{{Auth::id()}}" name="user_id" id="user_id" required>
-                <input type="hidden" name="dateregistered" id="dateregistered" value="{{date('Y-m-d')}}">
                 {{-- modal 彈出視窗 header(尾) --}}
                 <!-- Roll No Field -->
                 <div class="panel panel-default">
@@ -37,6 +32,11 @@
                         </h3>
                     </div>
                     <div class="panel-body">
+                        <input type="hidden" name="username" id="username" value="{{$rand_username_password}}">
+                        <input type="hidden" name="password" id="password" value="{{$rand_username_password}}">
+                        <input type="hidden" name="roll_no" id="roll_no" value="{{$roll_id}}">
+                        <input type="hidden" value="{{Auth::id()}}" name="user_id" id="user_id" required>
+                        <input type="hidden" name="dateregistered" id="dateregistered" value="{{date('Y-m-d')}}">
                         <div class="row">
                             {{-- <div class="form-group col-sm-3">
                                 <label>Roll No</label>
