@@ -72,14 +72,7 @@
                                 <input type="text" name="dob" id="dob" class="form-control" placeholder="Date of Birth" autocomplete="off">
                             </div>
 
-                            @push('scripts')
-                            <script type="text/javascript">
-                                $('#dob').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm:ss',
-                                    useCurrent: false
-                                })
-                            </script>
-                            @endpush
+
                             <!-- Phone Field -->
                             <div class="form-group col-sm-3">
                                 <label>Phone</label>
@@ -142,14 +135,6 @@
                                 <label><input type="radio" name="status" id="status" value="1" required>Married</label>
                             </div>
                         </div>
-                        @push('scripts')
-                        <script type="text/javascript">
-                            $('#dateregistered').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm:ss',
-                                useCurrent: false
-                            })
-                        </script>
-                        @endpush
                     </div>
                 </div>
                 <div class="panel panel-default">

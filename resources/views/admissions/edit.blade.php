@@ -25,8 +25,10 @@
        <div class="box box-primary">
            <div class="box-body">
                     {{-- <div class="row"> --}}
-                   {!! Form::model($admission, ['route' => ['admissions.update', $admission->student_id], 'method' => 'patch']) !!}
 
+                   <form  action="{{route('admissions.update',$admission->student_id)}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method("PATCH")
                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -34,14 +36,12 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-
                         <input type="hidden" value="{{Auth::id()}}" name="user_id" id="user_id" required>
                         <input type="hidden" name="dateregistered" id="dateregistered" value="{{date('Y-m-d')}}">
+                        <input type="hidden"  value="{{$admission->roll_no}}" name="roll_no" id="roll_no">
+                        <input type="hidden"  value="{{$admission->image}}" name="old_image" id="old_image">
                         <div class="row">
-                            {{-- <div class="form-group col-sm-3">
-                                <label>Roll No</label>
-                                <input type="text" name="roll_no" id="roll_no" class="form-control" autocomplete="off" placeholder="Roll No">
-                            </div> --}}
+
                             <!-- First Name Field -->
                             <div class="form-group col-sm-3">
                                 <label>First Name</label>
@@ -71,15 +71,6 @@
                                 <label>Date of Birth</label>
                                 <input type="text" name="dob" id="dob" class="form-control"  value="{{$admission->dob}}" placeholder="Date of Birth" autocomplete="off">
                             </div>
-
-                            @push('scripts')
-                            <script type="text/javascript">
-                                $('#dob').datetimepicker({
-                                    format: 'YYYY-MM-DD HH:mm:ss',
-                                    useCurrent: false
-                                })
-                            </script>
-                            @endpush
                             <!-- Phone Field -->
                             <div class="form-group col-sm-3">
                                 <label>Phone</label>
@@ -144,7 +135,7 @@
                             <div class="form-group col-sm-3">
                                 <label>Status : </label><br>
                                 <label>
-                                    <input type="radio" name="status" id="status" value="0" required checked {{$admission->status==0?'checked':''}}>
+                                    <input type="radio" name="status" id="status" value="0" required {{$admission->status==0?'checked':''}}>
                                     Single
                                 </label>
                                 <label>
@@ -153,14 +144,6 @@
                                 </label>
                             </div>
                         </div>
-                        @push('scripts')
-                        <script type="text/javascript">
-                            $('#dateregistered').datetimepicker({
-                                format: 'YYYY-MM-DD HH:mm:ss',
-                                useCurrent: false
-                            })
-                        </script>
-                        @endpush
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -208,7 +191,7 @@
                     <!-- Submit Field -->
                     {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
                 </div>
-                   {!! Form::close() !!}
+                   </form>
                {{-- </div> --}}
            </div>
        </div>

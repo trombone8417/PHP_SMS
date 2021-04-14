@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => ['studentSession']], function () {
+    Route::match(['get', 'post'], 'account', 'StudentController@account');
+});
+Route::get('/student', 'StudentController@studentLogin');
+// Route::get('/student','StudentController@studentLogout');
+Route::post('/student-login', 'StudentController@LoginStudent');
 Auth::routes();
 
 Route::get('/home', 'homeController@index');
@@ -63,8 +69,8 @@ Route::resource('semesters', 'SemesterController');
 
 Route::resource('classSchedules', 'ClassScheduleController');
 
-Route::get('/dynamicLevel', ['as'=>'dynamicLevel','uses'=>'ClassScheduleController@DynamicLevel']);
-Route::get('/class_schedules/edit', ['as'=>'edit','uses'=>'ClassScheduleController@edit']);
+Route::get('/dynamicLevel', ['as' => 'dynamicLevel', 'uses' => 'ClassScheduleController@DynamicLevel']);
+Route::get('/class_schedules/edit', ['as' => 'edit', 'uses' => 'ClassScheduleController@edit']);
 
 
 Route::resource('departments', 'DepartmentController');

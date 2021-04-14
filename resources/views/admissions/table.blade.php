@@ -55,7 +55,7 @@
                 <td>{{ $admission->nationality }}</td>
                 <td>{{ $admission->passport }}</td> --}}
                 <td>
-                    @if ($admission->status)
+                    @if ($admission->status==0)
                     Single
                     @else
                     Married
