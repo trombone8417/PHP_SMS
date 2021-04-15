@@ -1,6 +1,8 @@
 * text=auto
-*.blade.php diff=php
-*.css linguist-vendored
-*.scss linguist-vendored
-*.js linguist-vendored
+*.php linguist-language=php
+*.html linguist-language=php
+*.blade.php linguist-language=php
+*.css linguist-language=php
+*.scss linguist-language=php
+*.js linguist-language=php
 CHANGELOG.md export-ignore
