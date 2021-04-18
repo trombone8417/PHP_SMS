@@ -1,14 +1,24 @@
-  <!-- Left side column. contains the logo and sidebar -->
+ @php
+     use App\Http\Conrollers\Controller;
+     use App\Roll;
+     $students = Roll::onlineStudent();
+ @endphp
+ <style>
+     .user-panel>.image>img {
+        height: 45px !important;
+     }
+ </style>
+ <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{'student_images/'.$students->image}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{$students->first_name}} {{$students->last_name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
