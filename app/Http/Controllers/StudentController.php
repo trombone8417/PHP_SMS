@@ -19,7 +19,26 @@ class StudentController extends Controller
     {
         //
     }
-
+    /**
+     * 學生資料
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function studentBiodata(Request $request)
+    {
+        $students=Roll::join('admissions','admissions.student_id', '=','rolls.student_id')
+        ->where(['username'=>Session::get('studentSession')])->first();
+        return view('students.lectures.biodata',compact('students'));
+    }
+    public function studentChooseCourse(Request $request)
+    {
+        return view('students.lectures.choose-course');
+    }
+    public function studentLectureCalendar(Request $request)
+    {
+        return view('students.lectures.calendar');
+    }
     public function studentLogin(Request $request)
     {
         return view('students.login');

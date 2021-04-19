@@ -18,7 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['middleware' => ['studentSession']], function () {
+    Route::match(['get', 'post'], 'student-biodata', 'StudentController@studentBiodata');
     Route::match(['get', 'post'], 'account', 'StudentController@account');
+
+    Route::match(['get', 'post'], 'student-choose-course', 'StudentController@studentChooseCourse');
+    Route::match(['get', 'post'], 'student-lecture-calendar', 'StudentController@studentLectureCalendar');
+    Route::match(['get', 'post'], 'student-lecture-activity', 'StudentController@studentLecture-Activity');
+    Route::match(['get', 'post'], 'student-exam-marks', 'StudentController@studentExamMarks');
 });
 Route::get('/student', 'StudentController@studentLogin');
 // Route::get('/student','StudentController@studentLogout');
