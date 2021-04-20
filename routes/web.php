@@ -25,6 +25,8 @@ Route::group(['middleware' => ['studentSession']], function () {
     Route::match(['get', 'post'], 'student-lecture-calendar', 'StudentController@studentLectureCalendar');
     Route::match(['get', 'post'], 'student-lecture-activity', 'StudentController@studentLecture-Activity');
     Route::match(['get', 'post'], 'student-exam-marks', 'StudentController@studentExamMarks');
+    Route::match(['get', 'post'], 'varify-password', 'StudentController@varifyPassword');
+    Route::match(['get', 'post'], 'student-update-password', 'StudentController@changePassword');
 });
 Route::get('/student', 'StudentController@studentLogin');
 // Route::get('/student','StudentController@studentLogout');

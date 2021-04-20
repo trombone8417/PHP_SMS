@@ -27,9 +27,9 @@ class StudentController extends Controller
      */
     public function studentBiodata(Request $request)
     {
-        $students=Roll::join('admissions','admissions.student_id', '=','rolls.student_id')
-        ->where(['username'=>Session::get('studentSession')])->first();
-        return view('students.lectures.biodata',compact('students'));
+        $students = Roll::join('admissions', 'admissions.student_id', '=', 'rolls.student_id')
+            ->where(['username' => Session::get('studentSession')])->first();
+        return view('students.lectures.biodata', compact('students'));
     }
     public function studentChooseCourse(Request $request)
     {
@@ -64,7 +64,37 @@ class StudentController extends Controller
             }
         }
     }
+    public function varifyPassword(Request $request)
+    {
+        $students = $request->all();
+        $validStudent = Roll::where(['username' => Session::get('studentSession'), 'password' => $students['oldPassword']])->count();
+        // 確認該用戶是否存在
+        if ($validStudent==1) {
+            echo "true";die;
 
+        } else {
+            echo "false";die;
+
+        }
+
+        //return view('students.lectures.biodata',compact('students'));
+    }
+    public function changePassword(Request $request)
+    {
+        $student=$request->all();
+        $students=Admission::where('email',$student['email'])->first();
+        $studentCount = Roll::where(['username' => Session::get('studentSession'), 'password' => $student['oldPassword']])->count();
+        if ($studentCount == 1) {
+            $newPassword = $student['newPassword'];
+            Roll::where('username',Session::get('studentSession'))->update(['password'=>$newPassword]);
+             Flash::success('You have Successfully changed your password.');
+             return redirect()->back();
+        } else {
+            Flash::error('Password Failed to Update');
+            return redirect()->back();
+        }
+
+    }
     public function account()
     {
         // 若有Session值
