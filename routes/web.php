@@ -29,8 +29,13 @@ Route::group(['middleware' => ['studentSession']], function () {
     Route::match(['get', 'post'], 'student-update-password', 'StudentController@changePassword');
 });
 Route::get('/student', 'StudentController@studentLogin');
-// Route::get('/student','StudentController@studentLogout');
+Route::get('/logout','StudentController@studentLogout');
 Route::post('/student-login', 'StudentController@LoginStudent');
+// 忘記密碼
+Route::get('/student-forgot-password', 'StudentController@getForgotPassword');
+Route::post('/forgot-password', 'StudentController@ForgotPassword');
+
+
 Auth::routes();
 
 Route::get('/home', 'homeController@index');

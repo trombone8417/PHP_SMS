@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Session;
 use App\Models\Admission;
 use App\Roll;
@@ -64,6 +65,10 @@ class StudentController extends Controller
             }
         }
     }
+    public function studentLogout(Request $request) {
+        Auth::logout();
+        return redirect('/student');
+      }
     public function varifyPassword(Request $request)
     {
         $students = $request->all();
@@ -93,6 +98,14 @@ class StudentController extends Controller
             Flash::error('Password Failed to Update');
             return redirect()->back();
         }
+
+    }
+    public function getForgotPassword(Request $request)
+    {
+        return view('students.forgot-password');
+    }
+    public function ForgotPassword()
+    {
 
     }
     public function account()
