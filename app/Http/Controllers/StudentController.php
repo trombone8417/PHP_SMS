@@ -7,6 +7,8 @@ use Session;
 use App\Models\Admission;
 use App\Roll;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
 
 class StudentController extends Controller
@@ -104,8 +106,37 @@ class StudentController extends Controller
     {
         return view('students.forgot-password');
     }
-    public function ForgotPassword()
+    /**
+     * 忘記密碼(寄信)
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function ForgotPassword(Request $request)
     {
+        $data = $request->all();
+        $studentCount = Admission::where('email',$data['email'])->count();
+        if ($studentCount == 0) {
+        Flash::error('We cant find a student with that e-mail address.');
+        return redirect()->back();
+        }
+        Session::put('studentSession');
+        $students = Admission::where('email',$data['email'])->first();
+        $ran_password = Str::random(12);
+        $new_password = $ran_password;
+        Roll::where('username',Session::get('studentSession'))->update(['password'=>$new_password]);
+        $email = $data['email'];
+        $student_name = $students->first_name;
+        $message = [
+            'email'=>$email,
+            'first_name'=>$student_name,
+            'password'=>$new_password
+        ];
+        Mail::send('emails.forgot-password', $message, function ($message)use($email) {
+            $message->to($email)->subject('Reset Password - Academic Information System');
+        });
+        Flash::success('We have e-mailed your password Reset Link to'.$data['email']);
+        return redirect()->back();
 
     }
     public function account()
