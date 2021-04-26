@@ -23,23 +23,18 @@ class ClassAssigning extends Model
     use SoftDeletes;
 
     public $table = 'class_assignings';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
 
-
+    protected $primaryKey = 'class_assign_id';
 
     public $fillable = [
-        'course_id',
-        'level_id',
-        'shift_id',
-        'classroom_id',
-        'batch_id',
-        'day_id',
-        'time_id'
+        'teacher_id',
+        'class_schedule_id',
     ];
 
     /**
@@ -49,13 +44,8 @@ class ClassAssigning extends Model
      */
     protected $casts = [
         'class_assign_id' => 'integer',
-        'course_id' => 'integer',
-        'level_id' => 'integer',
-        'shift_id' => 'integer',
-        'classroom_id' => 'integer',
-        'batch_id' => 'integer',
-        'day_id' => 'integer',
-        'time_id' => 'integer'
+        'teacher_id' => 'integer',
+        'class_schedule_id' => 'integer',
     ];
 
     /**
@@ -64,17 +54,12 @@ class ClassAssigning extends Model
      * @var array
      */
     public static $rules = [
-        'course_id' => 'required|integer',
-        'level_id' => 'required|integer',
-        'shift_id' => 'required|integer',
-        'classroom_id' => 'required|integer',
-        'batch_id' => 'required|integer',
-        'day_id' => 'required|integer',
-        'time_id' => 'required|integer',
+        'teacher_id' => 'required|integer',
+        'class_schedule_id' => 'required|integer',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

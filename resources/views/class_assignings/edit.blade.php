@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($classAssigning, ['route' => ['classAssignings.update', $classAssigning->id], 'method' => 'patch']) !!}
+                   {!! Form::model($classAssigning, ['route' => ['classAssignings.update', $classAssigning->class_assign_id], 'method' => 'patch']) !!}
 
                         @include('class_assignings.fields')
 

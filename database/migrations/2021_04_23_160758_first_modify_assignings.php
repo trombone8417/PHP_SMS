@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssigningsTable extends Migration
+class FirstModifyAssignings extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,8 @@ class CreateAssigningsTable extends Migration
     {
         Schema::create('class_assignings', function (Blueprint $table) {
             $table->bigIncrements('class_assign_id');
-            $table->integer('course_id');
-            $table->integer('level_id');
-            $table->integer('shift_id');
-            $table->integer('classroom_id');
-            $table->integer('batch_id');
-            $table->integer('day_id');
-            $table->integer('time_id');
+            $table->integer('teacher_id');
+            $table->integer('class_schedule_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,4 +31,5 @@ class CreateAssigningsTable extends Migration
     {
         Schema::dropIfExists('class_assignings');
     }
+    
 }

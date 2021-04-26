@@ -28,6 +28,7 @@ Route::group(['middleware' => ['studentSession']], function () {
     Route::match(['get', 'post'], 'varify-password', 'StudentController@varifyPassword');
     Route::match(['get', 'post'], 'student-update-password', 'StudentController@changePassword');
 });
+Route::post('/insert',array('as'=>'insert','uses'=> 'ClassAssigningController@insert'));
 Route::get('/student', 'StudentController@studentLogin');
 Route::get('/logout','StudentController@studentLogout');
 Route::post('/student-login', 'StudentController@LoginStudent');

@@ -6,6 +6,18 @@ use App\Http\Requests\CreateClassAssigningRequest;
 use App\Http\Requests\UpdateClassAssigningRequest;
 use App\Repositories\ClassAssigningRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Batch;
+use App\Models\ClassAssigning;
+use App\Models\Classes;
+use App\Models\Classroom;
+use App\Models\ClassSchedule;
+use App\Models\Day;
+use App\Models\Level;
+use App\Models\Semester;
+use App\Models\Teacher;
+use App\Models\Time;
+use App\Status;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -30,10 +42,49 @@ class ClassAssigningController extends AppBaseController
     public function index(Request $request)
     {
         $classAssignings = $this->classAssigningRepository->all();
+        $teacher = Teacher::get();
 
-        return view('class_assignings.index')
+        $classSchedules = ClassSchedule::join('courses', 'courses.course_id', '=', 'class_schedules.course_id')
+            ->join('batches', 'batches.batch_id', '=', 'class_schedules.batch_id')
+            ->join('classes', 'classes.class_id', '=', 'class_schedules.class_id')
+            ->join('days', 'days.day_id', '=', 'class_schedules.day_id')
+            ->join('levels', 'levels.level_id', '=', 'class_schedules.level_id')
+            ->join('semesters', 'semesters.semester_id', '=', 'class_schedules.semester_id')
+            ->join('times', 'times.time_id', '=', 'class_schedules.time_id')
+            ->join('classrooms', 'classrooms.classroom_id', '=', 'class_schedules.classroom_id')
+            ->get();
+        return view('class_assignings.index', compact('classSchedules', 'teacher'))
             ->with('classAssignings', $classAssignings);
     }
+    public function insert(Request $request)
+    {
+        $validator = Validator::make($request->all(),['teacher_id' => 'required']);
+        if ($validator->fails()) {
+            Flash::error('Teacher can not be empty! ');
+            return redirect(route('classAssignings.index'));
+        }
+        $input = $request->all();
+        $teacher = new Status;
+        $teacher->teacher_id = $request->teacher_id;
+        $status_id = $teacher->save();
+        if ($status_id != 0) {
+            foreach ($request->multiclass as $class) {
+                $data2 = array('teacher_id'=>$request->teacher_id,'class_schedule_id'=>$class);
+
+                $checkExist = ClassAssigning::where('teacher_id', $request->teacher_id)
+                    ->where('class_schedule_id', $class)
+                    ->first();
+                if ($checkExist) {
+                    Flash::error('Class Assigning for this Teacher alread Exist.');
+                    return redirect(route('classAssignings.index'));
+                }
+                ClassAssigning::insert($data2);
+            }
+        }
+        Flash::success('Class Assigning Generate successfully!.');
+        return redirect(route('classAssignings.index'));
+    }
+
 
     /**
      * Show the form for creating a new ClassAssigning.

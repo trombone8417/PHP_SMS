@@ -13,17 +13,13 @@ use App\Repositories\BaseRepository;
 
 class ClassAssigningRepository extends BaseRepository
 {
+    protected $primaryKey = 'class_assign_id';
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'course_id',
-        'level_id',
-        'shift_id',
-        'classroom_id',
-        'batch_id',
-        'day_id',
-        'time_id'
+        'teacher_id',
+        'class_schedule_id',
     ];
 
     /**
