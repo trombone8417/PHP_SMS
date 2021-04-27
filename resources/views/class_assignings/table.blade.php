@@ -65,18 +65,39 @@
         <tbody>
             @foreach($classAssignings as $classAssigning)
             <tr>
-                <td>{{ $classAssigning->course_id }}</td>
-                <td>{{ $classAssigning->level_id }}</td>
-                <td>{{ $classAssigning->shift_id }}</td>
-                <td>{{ $classAssigning->classroom_id }}</td>
+                <td>{{ $classAssigning->first_name }} {{ $classAssigning->last_name }}</td>
+                <td>{{ $classAssigning->semester_name }}</td>
+                <td>{{ $classAssigning->course_name }}</td>
+                <td>
+                    {{ $classAssigning->level }} | {{ $classAssigning->time }} |
+                    {{ $classAssigning->name }} | {{ $classAssigning->class_name }} |
+                    {{ $classAssigning->shift }} | {{ $classAssigning->year }} |
+                    {{ $classAssigning->classroom_name }}
+                </td>
                 <td>
                     {!! Form::open(['route' => ['classAssignings.destroy', $classAssigning->class_assign_id], 'method'
                     => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('classAssignings.show', [$classAssigning->class_assign_id]) }}"
-                            class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="#"
+                            class='show-modal btn btn-default btn-xs'
+                            data-id="{{$classAssigning->class_assign_id}}"
+                            data-name="{{$classAssigning->name}}"
+                            data-fname="{{$classAssigning->first_name}}"
+                            data-lname="{{$classAssigning->last_name}}"
+                            data-shift="{{ $classAssigning->shift}}"
+                            data-level="{{$classAssigning->level}}"
+                            data-time="{{$classAssigning->time}}"
+                            data-classroom_name="{{$classAssigning->classroom_name}}"
+                            data-class_name="{{$classAssigning->class_name}}"
+                            data-batch="{{$classAssigning->year}}"
+                            data-course_name="{{$classAssigning->course_name}}"
+                            data-semester_name="{{ $classAssigning->semester_name}}"
+                            data-created_at="{{$classAssigning->created_at}}">
+                            <i class="glyphicon glyphicon-eye-open"></i></a>
+                            {{-- Edit --}}
                         <a href="{{ route('classAssignings.edit', [$classAssigning->class_assign_id]) }}"
                             class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                            {{-- Delete --}}
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
                         'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
@@ -86,4 +107,5 @@
             @endforeach
         </tbody>
     </table>
+    {{$classAssignings->links()}}
 </div>

@@ -16,6 +16,7 @@
         <div class="box box-primary">
             <div class="box-body">
                     @include('class_assignings.table')
+                    @include('class_assignings.show_fields')
             </div>
         </div>
         <div class="text-center">
