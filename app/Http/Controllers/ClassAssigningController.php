@@ -17,6 +17,7 @@ use App\Models\Semester;
 use App\Models\Teacher;
 use App\Models\Time;
 use App\Status;
+use PDF;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Flash;
@@ -67,6 +68,26 @@ class ClassAssigningController extends AppBaseController
             ->get();
         return view('class_assignings.index', compact('classSchedules', 'teacher'))
             ->with('classAssignings', $classAssignings);
+    }
+    public function PDFgenerator(Request $request)
+    {
+        $classAssignings = ClassAssigning::all();
+        $classAssignings = ClassAssigning::join('class_schedules','class_schedules.schedule_id','class_assignings.class_schedule_id')
+        ->join('teachers','teachers.teacher_id','=','class_assignings.teacher_id')
+        ->join('courses','courses.course_id','=','class_schedules.course_id')
+        ->join('batches', 'batches.batch_id', '=', 'class_schedules.batch_id')
+        ->join('classes', 'classes.class_id', '=', 'class_schedules.class_id')
+        ->join('days', 'days.day_id', '=', 'class_schedules.day_id')
+        ->join('levels', 'levels.level_id', '=', 'class_schedules.level_id')
+        ->join('semesters', 'semesters.semester_id', '=', 'class_schedules.semester_id')
+        ->join('shifts', 'shifts.shift_id', '=', 'class_schedules.shift_id')
+        ->join('times', 'times.time_id', '=', 'class_schedules.time_id')
+        ->join('classrooms', 'classrooms.classroom_id', '=', 'class_schedules.classroom_id')
+        ->paginate(10);
+        $dompdf = PDF::loadview('class_assignings.pdf', compact('classAssignings'));
+        $dompdf->setPaper('A4','landscape');
+        $dompdf->stream();
+        return $dompdf->download('Class_Assigning_Table.pdf');
     }
     public function insert(Request $request)
     {
