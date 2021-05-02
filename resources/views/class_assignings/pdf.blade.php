@@ -1,3 +1,4 @@
+{{-- pdf表格資料，不支援中文 --}}
 <table class="table" id="classAssignings-table">
     <thead>
         <tr>

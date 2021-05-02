@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Models\Teacher;
-
+use App\Exports\Teacher_Export;
+use Maatwebsite\Excel\Facades\Excel;
 class TeacherController extends AppBaseController
 {
     /** @var  TeacherRepository */
@@ -177,5 +178,32 @@ class TeacherController extends AppBaseController
         Flash::success('Teacher deleted successfully.');
 
         return redirect(route('teachers.index'));
+    }
+    /**
+     * 匯出 Excel，檔名 xlsx
+     *
+     * @return void
+     */
+    public function ExportExcel_xlsx()
+    {
+        return Excel::download(new Teacher_Export,'Teachers.xlsx');
+    }
+    /**
+     * 匯出 Excel，檔名 csv
+     *
+     * @return void
+     */
+    public function ExportExcel_csv()
+    {
+        return Excel::download(new Teacher_Export,'Teachers.csv');
+    }
+    /**
+     * 匯出 Excel，檔名 xls
+     *
+     * @return void
+     */
+    public function ExportExcel_xls()
+    {
+        return Excel::download(new Teacher_Export,'Teachers.xls');
     }
 }

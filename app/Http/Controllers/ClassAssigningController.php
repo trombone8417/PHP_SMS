@@ -69,6 +69,12 @@ class ClassAssigningController extends AppBaseController
         return view('class_assignings.index', compact('classSchedules', 'teacher'))
             ->with('classAssignings', $classAssignings);
     }
+    /**
+     * 產生PDF
+     *
+     * @param Request $request
+     * @return void
+     */
     public function PDFgenerator(Request $request)
     {
         $classAssignings = ClassAssigning::all();
@@ -84,9 +90,11 @@ class ClassAssigningController extends AppBaseController
         ->join('times', 'times.time_id', '=', 'class_schedules.time_id')
         ->join('classrooms', 'classrooms.classroom_id', '=', 'class_schedules.classroom_id')
         ->paginate(10);
+        // 資料到view的class_assignings.pdf頁面
         $dompdf = PDF::loadview('class_assignings.pdf', compact('classAssignings'));
         $dompdf->setPaper('A4','landscape');
         $dompdf->stream();
+        // 下載名稱Class_Assigning_Table.pdf
         return $dompdf->download('Class_Assigning_Table.pdf');
     }
     public function insert(Request $request)
