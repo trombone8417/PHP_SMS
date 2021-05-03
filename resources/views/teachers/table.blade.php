@@ -34,12 +34,8 @@
             {{-- <td>{{ $teacher->address }}</td>
             <td>{{ $teacher->nationality }}</td>
             <td>{{ $teacher->passport }}</td> --}}
-            <td>
-                @if($teacher->status == 0)
-                Single
-                @else
-                Married
-                @endif
+            <td class="col-md-1">
+                <input type="checkbox" class="js-switch" data-id="{{$teacher->teacher_id}}" name="status" class="js-switch"  {{$teacher->status == 1 ? 'checked' : ''}}>
             </td>
             {{-- <td>{{ $teacher->dateregistered }}</td>
             <td>{{ $teacher->user_id }}</td> --}}
@@ -58,3 +54,23 @@
         </tbody>
     </table>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.js-switch').change(function(){
+            let status = $(this).prop('checked') == true?1:0;
+            let teacherId = $(this).data('id');
+
+            $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:"{{url('teacher-status-update')}}",
+                data:{'status':status, 'teacher_id':teacherId},
+                success:function(data){
+                    console.log(data.message);
+                }
+            });
+        });
+    });
+</script>
+@endpush

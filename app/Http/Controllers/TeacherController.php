@@ -153,6 +153,14 @@ class TeacherController extends AppBaseController
 
         return redirect(route('teachers.index'));
     }
+    public function UpdateTeacherStatus(Request $request)
+    {
+        $teachers = Teacher::findOrFail($request->teacher_id);
+        $teachers->status = $request->status;
+        $teachers->save();
+
+        return response()->json(['message' => 'Teacher Status update Successfully.']);
+    }
 
     /**
      * Remove the specified Teacher from storage.

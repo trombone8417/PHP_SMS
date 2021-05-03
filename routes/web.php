@@ -28,6 +28,7 @@ Route::group(['middleware' => ['studentSession']], function () {
     Route::match(['get', 'post'], 'varify-password', 'StudentController@varifyPassword');
     Route::match(['get', 'post'], 'student-update-password', 'StudentController@changePassword');
 });
+Route::get('teacher-status-update','TeacherController@UpdateTeacherStatus');
 Route::get('excel-export-teachers_xlsx','TeacherController@ExportExcel_xlsx');
 Route::get('excel-export-teachers_csv','TeacherController@ExportExcel_csv');
 Route::get('excel-export-teachers_xls','TeacherController@ExportExcel_xls');
