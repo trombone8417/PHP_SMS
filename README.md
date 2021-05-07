@@ -14,15 +14,20 @@ laravel 校園資訊系統
 `php artisan infyom:scaffold ClassSchedule --fromTable --tableName=class_schedules`
 ## 作品
 ##### 首頁
-![alt 登入](md-img/index.png)
+![alt](md-img/teacherIndex.png)
+![alt](md-img/studentIndex.png)
 ##### 登入
-![alt 登入](md-img/login.png)
+![alt](md-img/teacherLogin.png)
+![alt](md-img/studentLogin.png)
 ##### 教師列表
-![alt 登入](md-img/teacherIndex.png)
+![alt](md-img/teacherList.png)
 ##### 教師新增
-![alt 登入](md-img/teacherCreate.png)
-##### 學生編輯
-![alt 登入](md-img/admissionEdit.png)
+![alt](md-img/teacherCreate.png)
+
+##### 教師Excel
+![alt](md-img/teacherExcel.png)
+##### 學生資料
+![alt](md-img/studentDetail.png)
 ## 資料來源
 Youtube：Laravel Student Information System (Programming with Singhateh)
 

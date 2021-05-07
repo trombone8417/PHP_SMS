@@ -44,7 +44,7 @@
         </ul>
     </div>
     {{-- Word --}}
-    <div class="btn btn-group">
+    {{-- <div class="btn btn-group">
         <button type="button" class="btn btn-primary"><i class="fa fa-file-word-o" style="color: white"></i>&nbsp;&nbsp;WORD</button>
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="caret"></span>
@@ -59,7 +59,7 @@
                 <a href="" class="btn btn">Import WORD</a>
             </li>
         </ul>
-    </div>
+    </div> --}}
     <h1 class="pull-right">
         <a data-toggle="modal" data-target="#teacher-add-modal" class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px">Add New</a>
     </h1>

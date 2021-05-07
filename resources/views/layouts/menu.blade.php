@@ -26,9 +26,9 @@
             <a href="{{ route('batches.index') }}"><i class="fa fa-edit"></i><span>Batches</span></a>
         </li>
 
-        <li class="{{ Request::is('shifts*') ? 'active' : '' }}">
+        {{-- <li class="{{ Request::is('shifts*') ? 'active' : '' }}">
             <a href="{{ route('shifts.index') }}"><i class="fa fa-edit"></i><span>Shifts</span></a>
-        </li>
+        </li> --}}
 
         <li class="{{ Request::is('courses*') ? 'active' : '' }}">
             <a href="{{ route('courses.index') }}"><i class="fa fa-edit"></i><span>Courses</span></a>
@@ -38,9 +38,9 @@
             <a href="{{ route('faculties.index') }}"><i class="fa fa-edit"></i><span>Faculties</span></a>
         </li>
 
-        <li class="{{ Request::is('times*') ? 'active' : '' }}">
+        {{-- <li class="{{ Request::is('times*') ? 'active' : '' }}">
             <a href="{{ route('times.index') }}"><i class="fa fa-edit"></i><span>Times</span></a>
-        </li>
+        </li> --}}
 
         <li class="{{ Request::is('academics*') ? 'active' : '' }}">
             <a href="{{ route('academics.index') }}"><i class="fa fa-edit"></i><span>Academics</span></a>
@@ -88,9 +88,9 @@
             <a href="{{ route('users.index') }}"><i class="fa fa-user"></i><span>Users</span></a>
     </li>
 {{-- @if(Auth::user()->role < 2) --}}
-<li class="{{ Request::is('attendances*') ? 'active' : '' }}">
+{{-- <li class="{{ Request::is('attendances*') ? 'active' : '' }}">
     <a href="{{ route('attendances.index') }}"><i class="fa fa-calendar"></i><span>Attendances</span></a>
-    </li>
+    </li> --}}
 
 
 
@@ -99,9 +99,9 @@
     </li>
 
 
-    <li class="{{ Request::is('transactions*') ? 'active' : '' }}">
+    {{-- <li class="{{ Request::is('transactions*') ? 'active' : '' }}">
         <a href="{{ route('transactions.index') }}"><i class="fa fa-money"></i><span>Transactions</span></a>
-    </li>
+    </li> --}}
 {{-- @endif --}}
 
 

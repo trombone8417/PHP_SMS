@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-04-15 08:51:41
+-- 產生時間： 2021-05-04 08:05:56
 -- 伺服器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.2.33
 
@@ -141,13 +141,8 @@ CREATE TABLE `classrooms` (
 
 CREATE TABLE `class_assignings` (
   `class_assign_id` bigint(20) UNSIGNED NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `level_id` int(11) NOT NULL,
-  `shift_id` int(11) NOT NULL,
-  `classroom_id` int(11) NOT NULL,
-  `batch_id` int(11) NOT NULL,
-  `day_id` int(11) NOT NULL,
-  `time_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `class_schedule_id` int(11) NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -365,6 +360,20 @@ CREATE TABLE `shifts` (
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `statuses`
+--
+
+CREATE TABLE `statuses` (
+  `status_id` bigint(20) UNSIGNED NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `teachers`
 --
 
@@ -571,6 +580,12 @@ ALTER TABLE `shifts`
   ADD PRIMARY KEY (`shift_id`);
 
 --
+-- 資料表索引 `statuses`
+--
+ALTER TABLE `statuses`
+  ADD PRIMARY KEY (`status_id`);
+
+--
 -- 資料表索引 `teachers`
 --
 ALTER TABLE `teachers`
@@ -713,6 +728,12 @@ ALTER TABLE `semesters`
 --
 ALTER TABLE `shifts`
   MODIFY `shift_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `statuses`
+--
+ALTER TABLE `statuses`
+  MODIFY `status_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `teachers`
