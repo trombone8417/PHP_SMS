@@ -1,4 +1,11 @@
 <div class="table-responsive">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="wait" id="wait">
+                {{-- spinner --}}
+            </div>
+        </div>
+    </div>
     <table class="table" id="teachers-table">
         <thead>
             <tr>
@@ -68,6 +75,7 @@
                 data:{'status':status, 'teacher_id':teacherId},
                 success:function(data){
                     console.log(data.message);
+                    toastr.success(data.message);
                 }
             });
         });
